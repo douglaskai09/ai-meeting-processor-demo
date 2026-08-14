@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Meeting Processor Demo</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="shell">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">AI OPERATIONS PORTFOLIO</p>
+        <h1>Turn conversation into accountable work.</h1>
+        <p class="sub">Paste meeting notes or a transcript and convert them into a reviewable decision package: summary, decisions, actions, owners, deadlines, risks, and follow-up.</p>
+      </div>
+      <div class="flow-card">
+        <span>Processing signature</span>
+        <strong>Capture → Extract → Verify → Assign → Approve → Export</strong>
+      </div>
+    </section>
+
+    <section class="grid">
+      <article class="panel input-panel">
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow">SOURCE</p>
+            <h2>Meeting input</h2>
+          </div>
+          <button id="sampleBtn" class="ghost" type="button">Load sample</button>
+        </div>
+
+        <label>Meeting title<input id="meetingTitle" placeholder="Weekly launch review" /></label>
+        <label>Transcript / notes<textarea id="sourceText" rows="18" placeholder="Paste meeting notes or a transcript here..."></textarea></label>
+
+        <div class="actions">
+          <button id="processBtn" class="primary" type="button">Process meeting</button>
+          <button id="resetBtn" class="ghost" type="button">Reset</button>
+        </div>
+        <p id="notice" class="notice" aria-live="polite"></p>
+      </article>
+
+      <article class="panel result-panel">
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow">STRUCTURED OUTPUT</p>
+            <h2>Decision package</h2>
+          </div>
+          <span id="reviewBadge" class="badge muted">Waiting</span>
+        </div>
+
+        <div id="emptyState" class="empty">Process a meeting to generate a structured decision package.</div>
+
+        <div id="results" hidden>
+          <div class="summary-card">
+            <span>Executive summary</span>
+            <p id="summary"></p>
+          </div>
+
+          <div class="result-grid">
+            <section class="mini-card">
+              <span>Decisions</span>
+              <ul id="decisions"></ul>
+            </section>
+            <section class="mini-card">
+              <span>Risks / blockers</span>
+              <ul id="risks"></ul>
+            </section>
+          </div>
+
+          <section class="mini-card">
+            <div class="section-title">
+              <span>Action items</span>
+              <small>Explicit vs inferred fields are labeled</small>
+            </div>
+            <div id="actionsTableWrap" class="table-wrap">
+              <table>
+                <thead><tr><th>Task</th><th>Owner</th><th>Due</th><th>Confidence</th></tr></thead>
+                <tbody id="actionRows"></tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="mini-card">
+            <span>Follow-up draft</span>
+            <p id="followUp"></p>
+          </section>
+
+          <div class="approval-bar">
+            <div>
+              <span>Human review gate</span>
+              <strong id="approvalState">Needs approval</strong>
+            </div>
+            <button id="approveBtn" class="primary" type="button">Approve package</button>
+            <button id="exportBtn" class="ghost" type="button" disabled>Export JSON</button>
+          </div>
+
+          <section class="audit-card">
+            <span>Processing audit</span>
+            <ol id="auditLog"></ol>
+          </section>
+        </div>
+      </article>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
